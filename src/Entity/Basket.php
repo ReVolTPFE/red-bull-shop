@@ -20,11 +20,6 @@ class Basket
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="baskets")
-     */
-    private $product;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="baskets")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -40,38 +35,15 @@ class Basket
      */
     private $bought;
 
-    public function __construct()
-    {
-        $this->product = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="baskets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $product;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProduct(): Collection
-    {
-        return $this->product;
-    }
-
-    public function addProduct(Product $product): self
-    {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): self
-    {
-        $this->product->removeElement($product);
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -106,6 +78,18 @@ class Basket
     public function setBought(bool $bought): self
     {
         $this->bought = $bought;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }

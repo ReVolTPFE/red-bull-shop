@@ -35,7 +35,7 @@ class Product
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Basket::class, mappedBy="product")
+     * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="product")
      */
     private $baskets;
 
@@ -97,7 +97,7 @@ class Product
     {
         if (!$this->baskets->contains($basket)) {
             $this->baskets[] = $basket;
-            $basket->addProduct($this);
+            $basket->setProduct($this);
         }
 
         return $this;
@@ -106,7 +106,10 @@ class Product
     public function removeBasket(Basket $basket): self
     {
         if ($this->baskets->removeElement($basket)) {
-            $basket->removeProduct($this);
+            // set the owning side to null (unless already changed)
+            if ($basket->getProduct() === $this) {
+                $basket->setProduct(null);
+            }
         }
 
         return $this;
