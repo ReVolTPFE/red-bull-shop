@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="rb-shop" uuid="8eda8f60-a283-4c0e-8a83-4cc2cdac6404">
+    <data-source source="LOCAL" name="rb-shop" uuid="8f95bbd5-9692-43c2-8100-164c85eb353a">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\MMI\Année 2\S4\INFO4\red-bull-shop\var\rb-shop.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Dev\IUT\red-bull-shop\var\rb-shop.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

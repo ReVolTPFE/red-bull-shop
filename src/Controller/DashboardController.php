@@ -62,7 +62,7 @@ class DashboardController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->add($product);
-            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard_product', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dashboard/product/edit.html.twig', [

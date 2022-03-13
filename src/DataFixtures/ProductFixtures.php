@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -24,6 +25,7 @@ class ProductFixtures extends Fixture {
 			$product->setName($product_data['name']);
 			$product->setPrice($product_data['price']);
 			$product->setDescription($product_data['description']);
+
 			// Enregistre dans la BDD (INSERT)
 			$manager->persist($product);
 		}

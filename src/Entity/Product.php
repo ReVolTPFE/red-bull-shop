@@ -39,9 +39,15 @@ class Product
      */
     private $baskets;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="products", cascade={"persist"})
+     */
+    private $category;
+
     public function __construct()
     {
         $this->baskets = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,30 @@ class Product
                 $basket->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }

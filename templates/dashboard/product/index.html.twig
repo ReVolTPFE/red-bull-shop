@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prix</th>
+                <th>Catégories</th>
                 <th>Description</th>
                 <th>Actions</th>
             </tr>
@@ -20,6 +21,12 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    {% for category in product.category %}
+                        {{ category }}
+                    {% endfor %}
+                </td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.description }}</td>
                 <td>
