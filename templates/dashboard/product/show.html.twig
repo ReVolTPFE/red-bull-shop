@@ -16,19 +16,33 @@
                 <td>{{ product.name }}</td>
             </tr>
             <tr>
+                <th>Catégories</th>
+                <td>
+                    {% for category in product.category %}
+                        {{ category }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
                 <th>Prix</th>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }} €</td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ product.description }}</td>
             </tr>
+            <tr>
+                <th>image</th>
+                <td>
+                    <img src="{{ asset('assets/img/' ~ product.image) }}" class="image-show-preview" alt="">
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_dashboard_product') }}">Retour aux produits</a>
 
-    <a href="{{ path('app_dashboard_product_edit', {'id': product.id}) }}">Modifier</a>
-
+    <a class="btn btn-primary mb-2" href="{{ path('app_dashboard_product_edit', {'id': product.id}) }}">Modifier</a><br>
     {{ include('dashboard/product/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_dashboard_product') }}">Retour aux produits</a><br>
 {% endblock %}

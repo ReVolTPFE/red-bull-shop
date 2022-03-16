@@ -3,11 +3,12 @@
 {% block title %}Modifier une catégorie{% endblock %}
 
 {% block body %}
-    <h1>Modifier une catégorie</h1>
+    <section class="action-page">
+        <h1>Modifier une catégorie</h1>
 
-    {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('product/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        {{ include('dashboard/category/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_dashboard_category') }}">Retour aux catégories</a>
-
-    {{ include('dashboard/category/_delete_form.html.twig') }}
+        <a href="{{ path('app_dashboard_category') }}">Retour aux catégories</a>
+    </section>
 {% endblock %}

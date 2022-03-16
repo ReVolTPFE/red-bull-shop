@@ -7,8 +7,9 @@
 
     <div class="container">
         <h2>{{ product.name }}</h2>
-        <p>{{ product.price }}</p>
+        <img src="{{ asset('assets/img/' ~ product.image) }}" class="card-img-top" alt="">
         <p>{{ product.description }}</p>
+        <p>{{ product.price }} €</p>
 
         <a href="{{ path('app_product_index') }}">Retour aux produits</a>
     </div>

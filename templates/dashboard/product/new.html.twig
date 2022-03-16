@@ -3,9 +3,11 @@
 {% block title %}Nouveau produit{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un nouveau produit</h1>
+    <section class="action-page">
+        <h1>Ajouter un nouveau produit</h1>
 
-    {{ include('product/_form.html.twig') }}
+        {{ include('product/_form.html.twig') }}
 
-    <a href="{{ path('app_dashboard_product') }}">Retour aux produits</a>
+        <a href="{{ path('app_dashboard_product') }}">Retour aux produits</a>
+    </section>
 {% endblock %}

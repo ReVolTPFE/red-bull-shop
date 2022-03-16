@@ -20,9 +20,10 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    {# {% for product in categories.product %}
-                        {{ product }}<br>
-                    {% endfor %} #}
+                    {% for product in category.products %}
+                        <a href="{{ path('app_dashboard_product_show', {'id': product.id}) }}">{{ product }}</a>
+                        <br>
+                    {% endfor %}
                 </td>
                 <td>
                     <a href="{{ path('app_dashboard_category_edit', {'id': category.id}) }}">Modifier</a>
@@ -36,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_dashboard_category_new') }}">Ajouter une catégorie</a>
+    <a class="btn btn-primary" href="{{ path('app_dashboard_category_new') }}">Ajouter une catégorie</a>
 {% endblock %}

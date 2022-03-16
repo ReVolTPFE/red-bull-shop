@@ -13,6 +13,7 @@
                 <th>Prix</th>
                 <th>Catégories</th>
                 <th>Description</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,13 +22,16 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }} €</td>
                 <td>
                     {% for category in product.category %}
-                        {{ category }}
+                        {{ category }}<br>
                     {% endfor %}
                 </td>
                 <td>{{ product.description }}</td>
+                <td>
+                    <img src="{{ asset('assets/img/' ~ product.image) }}" class="image-preview" alt="">
+                </td>
                 <td>
                     <a href="{{ path('app_dashboard_product_show', {'id': product.id}) }}">Voir</a>
                     <a href="{{ path('app_dashboard_product_edit', {'id': product.id}) }}">Modifier</a>
@@ -41,5 +45,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_dashboard_product_new') }}">Ajouter un produit</a>
+    <a class="btn btn-primary" href="{{ path('app_dashboard_product_new') }}">Ajouter un produit</a>
 {% endblock %}

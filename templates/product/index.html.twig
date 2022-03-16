@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des produits{% endblock %}
+{% block title %}Produits du magasin{% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
+    <h1 class="text-center">Produits du magasin</h1>
+
+    <h2 class="text-center">Filtres</h2>
+    <nav class="text-center">
+        <a class="filter-link btn btn-primary">Tous</a>
+
+        {% for category in categories %}
+        <a class="filter-link btn btn-primary">{{ category }}</a>
+        {% endfor %}
+    </nav>
 
     <div class="container">
         <div class="row">
+            <p class="no-found text-center pt-4">Aucun produit n'a cette catégorie actuellement.</p>
+
             {% for product in products %}
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 article_card pt-4">
                     <div class="card">
-                        <img src="..." class="card-img-top" alt="">
+                        <img src="{{ asset('assets/img/' ~ product.image) }}" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.price }}</p>
-                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text">{{ product.price }} €</p>
+                            <p class="card-text">
+                                {% for category in product.category %}
+                                    {{ category }}
+                                {% endfor %}
+                            </p>
                             <a href="{{ path('app_product_show', { 'id': product.id }) }}" class="btn btn-primary">Afficher</a>
                         </div>
                     </div>
@@ -22,4 +37,6 @@
             {% endfor %}
         </div>
     </div>
+
+    <script src="{{ asset('assets/js/filtering.js') }}"></script>
 {% endblock %}

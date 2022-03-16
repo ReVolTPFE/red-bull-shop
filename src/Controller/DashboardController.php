@@ -146,4 +146,6 @@ class DashboardController extends AbstractController
 
         return $this->redirectToRoute('app_dashboard_category', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }
