@@ -47,7 +47,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image = 'default.jpg';
+    private $image = "https://assets.redbullshop.com/q_auto/t_subshop-select/content/RB%20SHOP%20BANNERS/Navigation%20Logos/nav_red_bull_racing_neg_v2.png";
 
     public function __construct()
     {

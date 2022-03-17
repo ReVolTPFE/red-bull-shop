@@ -30,7 +30,7 @@
                 </td>
                 <td>{{ product.description }}</td>
                 <td>
-                    <img src="{{ asset('assets/img/' ~ product.image) }}" class="image-preview" alt="">
+                    <img src="{{ product.image }}" class="image-preview" alt="">
                 </td>
                 <td>
                     <a href="{{ path('app_dashboard_product_show', {'id': product.id}) }}">Voir</a>
