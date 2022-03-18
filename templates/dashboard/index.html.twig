@@ -1,9 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
+{% block title %}Informations générales{% endblock %}
 
 {% block body %}
 
+<h1 class="text-center">Informations générales</h1>
+
+<p class="text-center fs-3">Nombre total de produits passés dans un panier : <strong>{{ basketsNumber }}</strong></p>
+<p class="text-center fs-3">Nombre total de produits achetés : <strong>{{ boughtNumber }}</strong></p>
+
+<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Image</th>
+				<th>Nombre d'achats</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for product in products %}
+			<tr>
+				<td>{{ product.id }}</td>
+				<td>{{ product.name }}</td>
+				<td>
+					<img src="{{ product.image }}" class="image-preview" alt="">
+				</td>
+				<td>
+					{% for id, numberOfOrder in productsBought %}
+						{% if product.id == id %}
+							{{ numberOfOrder }}
+						{% endif %}
+					{% endfor %}
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="5">Aucun produit trouvé.</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
 
 
 {% endblock %}

@@ -10,6 +10,7 @@ use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BasketController extends AbstractController
 {
@@ -42,6 +43,21 @@ class BasketController extends AbstractController
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/basket/remove/{id}", name="app_basket_remove_product", methods={"GET", "POST"})
+     * @ParamConverter("basket", options={"mapping": {"id" : "id"}})
+     */
+    public function removeProduct(Basket $basket, BasketRepository $basketRepository): Response
+    {
+        if ($this->getUser()) {
+            $basket = $basketRepository->findOneBy(['id' => $basket->getId()]);
+
+            $basketRepository->remove($basket);
+        }
+
+        return $this->redirectToRoute('app_basket', [], Response::HTTP_SEE_OTHER);
     }
 
     /**

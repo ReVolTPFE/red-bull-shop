@@ -16,6 +16,7 @@
                 <th>Image</th>
                 <th>Quantité</th>
                 <th>Prix</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,15 +26,16 @@
                     <td><img src="{{ basket.product.image }}" alt="" class="basket-p-img"></td>
                     <td class="basket-p-quantity">{{ basket.quantity }}</td>
                     <td class="basket-p-price">{{ basket.product.price }} €</td>
+                    <td><a href="{{ path('app_basket_remove_product', {'id': basket.id}) }}">Supprimer</a></td>
                     {% set totalPrice = totalPrice + basket.product.price %}
                 </tr>
                 {% else %}
-                    <tr><td colspan="4" class="text-center">Il n'y a aucun produit dans ce panier.</td></tr>
+                    <tr><td colspan="5" class="text-center">Il n'y a aucun produit dans ce panier.</td></tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <div class="w-100 flex justify-content-between flex-row">
+    <div class="w-100 d-flex justify-content-between flex-row">
         <h3>Prix total : {{ totalPrice }} €</h3>
         <a class="btn btn-success" href="{{ path('app_basket_validate_order') }}">Passer commande</a>
     </div>

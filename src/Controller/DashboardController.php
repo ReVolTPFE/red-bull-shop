@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ProductType;
 use App\Form\CategoryType;
+use App\Repository\BasketRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,50 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DashboardController extends AbstractController
 {
+    /**
+     * @Route("/dashboard", name="app_dashboard", methods={"GET"})
+     */
+    public function default(BasketRepository $basketRepository, ProductRepository $productRepository): Response
+    {
+        $baskets = $basketRepository->findAll();
+
+        $basketsNumber = count($baskets);
+
+        $boughtNumber = 0;
+
+        foreach ($baskets as $value) {
+            if ($value->getBought() == 1) {
+                $boughtNumber++;
+            }
+        }
+
+        $products = $productRepository->findAll();
+
+        $eachProductBoughtNumber = [];
+
+        foreach ($products as $product) {
+            $productId = $product->getId();
+            $eachProductBoughtNumber += ["$productId" => 0];
+
+            foreach ($baskets as $value) {
+                $basketProduct = $value->getProduct();
+
+                if ($productId == $basketProduct->getId()) {
+                    if ($value->getBought() == 1) {
+                        $eachProductBoughtNumber["$productId"] += 1;
+                    }
+                }
+            }
+        }
+
+        return $this->render('dashboard/index.html.twig', [
+            'basketsNumber' => $basketsNumber,
+            'boughtNumber' => $boughtNumber,
+            'products' => $products,
+            'productsBought' => $eachProductBoughtNumber
+        ]);
+    }
+
     /**
      * @Route("/dashboard/product", name="app_dashboard_product", methods={"GET"})
      */

@@ -2,9 +2,9 @@ let allCards = document.querySelectorAll(".article_card");
 let navLinks = document.querySelectorAll(".filter-link");
 let allHidden = document.querySelector(".no-found");
 
-// allCards.forEach(card => {
-// 	card.style.display = 'flex';
-// });
+allCards.forEach(card => {
+	card.style.display = 'flex';
+});
 
 navLinks.forEach(link => {
 	link.addEventListener("click", () => {

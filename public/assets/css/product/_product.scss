@@ -6,3 +6,32 @@
 	width: 100%;
 	height: auto;
 }
+
+.img-contain {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	img {
+		width: 500px;
+		height: auto;
+	}
+
+	.infos {
+		h2, p, a {
+			font-size: 40px;
+			margin: 20px;
+		}
+		
+		p, a {
+			font-size: 18px;
+		}
+		
+		.price {
+			font-size: 24px;
+			font-weight: bold;
+		}
+	}
+}
