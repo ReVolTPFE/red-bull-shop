@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
 
 # Update system
 RUN apt-get update && apt-get upgrade -y
@@ -11,7 +11,7 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash
 RUN apt-get install -y nodejs
 
 # Composer install
-COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2.1 /usr/bin/composer /usr/local/bin/composer
 
 # Symfony CLI install
 RUN cd /root \
